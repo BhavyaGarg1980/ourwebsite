@@ -519,17 +519,8 @@
     <div class="caption" id="modalCaption"></div>
   </div>
 
-  <!-- Video Modal -->
-  <div id="videoModal" class="video-modal">
-    <span class="close" id="videoClose">&times;</span>
-    <div class="video-content">
-      <video class="video-player" id="videoPlayer" controls>
-        <!-- Replace with your actual video file path -->
-        <source src="c:\Desktop\usss\IMG_6930.MP4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
+ 
+
 
   <header>
     <h1>Our Story So Far... 💞</h1>
@@ -609,14 +600,28 @@
       <p>Abhi toh aur boht kuch rehta likhne ko. Ab har saal isme aur add krte rhenge, har special moment, har achievement, sb kuchh💗</p>
     </div>
 
-    <!-- Video Button Section -->
-    <div class="video-section">
-      <p>🎥 A special video memory just for us... ✨</p>
-      <button class="video-btn" id="videoBtn">
-        <span>🎬</span> Watch Our Special Video
-      </button>
-    </div>
+    <!-- Video Modal -->
+<div id="videoModal" class="video-modal">
+  <span id="videoClose" class="close">&times;</span>
+  <div class="video-content">
+    <iframe id="videoPlayer" class="video-player"
+      src="https://www.youtube.com/embed/QQORajLD-Po?autoplay=1"
+      title="Our Special Video"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
+</div>
+
+<!-- Video Button Section -->
+<div class="video-section">
+  <p>🎥 A special video memory just for us... ✨</p>
+  <button class="video-btn" id="videoBtn">
+    <span>🎬</span> Watch Our Special Video
+  </button>
+</div>
+
 
   <footer>
     Every chapter with you is my favorite. Thankyou for being you and being mine. 💌<br />
@@ -636,9 +641,9 @@
     const startMusicBtn = document.getElementById('startMusicBtn');
     const playOverlay = document.getElementById('playOverlay');
     const videoBtn = document.getElementById('videoBtn');
-    const videoModal = document.getElementById('videoModal');
-    const videoPlayer = document.getElementById('videoPlayer');
-    const videoClose = document.getElementById('videoClose');
+const videoModal = document.getElementById('videoModal');
+const videoPlayer = document.getElementById('videoPlayer');
+const videoClose = document.getElementById('videoClose');
     
     // Start music when user clicks the overlay button
     startMusicBtn.addEventListener('click', function() {
@@ -678,26 +683,22 @@
     });
     
     // Video button functionality
-    videoBtn.addEventListener('click', function() {
-      videoModal.style.display = 'flex';
-      // Optional: Auto-play video when modal opens
-      // videoPlayer.play();
-    });
-    
-    // Close video modal
-    videoClose.addEventListener('click', function() {
-      videoModal.style.display = 'none';
-      videoPlayer.pause();
-    });
-    
-    // Close video modal when clicking outside
-    videoModal.addEventListener('click', function(e) {
-      if (e.target === videoModal) {
-        videoModal.style.display = 'none';
-        videoPlayer.pause();
-      }
-    });
-    
+   videoBtn.addEventListener('click', function() {
+  videoModal.style.display = 'flex';
+});
+
+videoClose.addEventListener('click', function() {
+  videoModal.style.display = 'none';
+  videoPlayer.src = videoPlayer.src; // stop the video
+});
+
+videoModal.addEventListener('click', function(e) {
+  if (e.target === videoModal) {
+    videoModal.style.display = 'none';
+    videoPlayer.src = videoPlayer.src; // stop the video
+  }
+});
+
     // Close video modal with Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
