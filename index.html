@@ -1,754 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Story So Far...</title>
-  <style>
-    body {
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      background-color: #fff8f8;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
 
-    /* Floating hearts background */
-    .heart {
-      position: fixed;
-      bottom: -10px;
-      color: #ff6fae;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-      z-index: 0;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0.8; }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-    }
+<!-- Minimal Script + Elegant Text -->
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
-    header {
-      text-align: center;
-      background-color: #ffd1dc;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      animation: slideDown 1.2s ease-out;
-      position: relative;
-      z-index: 1;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-      color: #e75480;
-    }
-    header p {
-      margin: 0.3rem 0 0;
-      font-style: italic;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .panel {
-      background-color: #fff;
-      border: 3px dashed #ffc0cb;
-      border-radius: 15px;
-      padding: 1.2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeInUp 1s ease;
-      cursor: pointer;
-    }
-
-    .panel:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 15px rgba(231, 84, 128, 0.2);
-    }
-
-    @keyframes fadeInUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .panel h2 {
-      margin-top: 0;
-      color: #e75480;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .panel p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    /* Cartoon icons style */
-    .icon {
-      font-size: 2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1.5rem;
-      font-style: italic;
-      background-color: #ffe4ec;
-      border-top: 2px solid #ffc0cb;
-      animation: fadeIn 2s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Floating animation for emojis in panels */
-    .float {
-      display: inline-block;
-      animation: gentleFloat 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes gentleFloat {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-5px); }
-    }
-    
-    /* Photo Gallery Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    .modal-content {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
-      animation: zoomIn 0.3s ease;
-    }
-    
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    
-    .close:hover {
-      color: #ff6fae;
-    }
-    
-    .caption {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-      padding: 10px;
-    }
-    
-    /* Heart pulse animation for special panels */
-    .special-panel {
-      background: linear-gradient(135deg, #fff, #ffe6ee);
-      border: 3px solid #ff6fae;
-      position: relative;
-    }
-    
-    .special-panel::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 30px;
-      height: 30px;
-      background-color: #ff6fae;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(0.8); opacity: 0.8; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(0.8); opacity: 0.8; }
-    }
-    
-    /* Music Player */
-    .music-player {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 50px;
-      padding: 10px 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 100;
-      backdrop-filter: blur(5px);
-      border: 2px solid #ff6fae;
-      animation: slideInRight 1s ease;
-    }
-    
-    @keyframes slideInRight {
-      from { transform: translateX(100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    
-    .music-info {
-      display: flex;
-      flex-direction: column;
-      max-width: 150px;
-    }
-    
-    .song-title {
-      font-weight: bold;
-      color: #e75480;
-      font-size: 0.9rem;
-    }
-    
-    .artist {
-      font-size: 0.8rem;
-      color: #666;
-    }
-    
-    .music-controls {
-      display: flex;
-      gap: 5px;
-    }
-    
-    .music-btn {
-      background: #ff6fae;
-      border: none;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: white;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .music-btn:hover {
-      background: #e75480;
-      transform: scale(1.1);
-    }
-    
-    .volume-control {
-      width: 80px;
-    }
-    
-    /* Music visualizer */
-    .visualizer {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 20px;
-    }
-    
-    .bar {
-      width: 3px;
-      background: #ff6fae;
-      border-radius: 2px;
-      animation: visualizer 1.5s ease infinite alternate;
-    }
-    
-    .bar:nth-child(2) { animation-delay: 0.2s; }
-    .bar:nth-child(3) { animation-delay: 0.4s; }
-    .bar:nth-child(4) { animation-delay: 0.6s; }
-    .bar:nth-child(5) { animation-delay: 0.8s; }
-    
-    @keyframes visualizer {
-      0% { height: 3px; }
-      100% { height: 20px; }
-    }
-    
-    /* Auto-play permission overlay */
-    .play-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 214, 220, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .play-overlay h2 {
-      color: #e75480;
-      margin-bottom: 1rem;
-    }
-    
-    .play-btn {
-      background: #ff6fae;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
-    
-    .play-btn:hover {
-      background: #e75480;
-      transform: scale(1.05);
-    }
-    
-    /* Video Button Section */
-    .video-section {
-      text-align: center;
-      margin: 3rem 0;
-      padding: 2rem;
-      background: linear-gradient(135deg, #ffe6ee, #ffd1dc);
-      border-radius: 20px;
-      border: 3px dashed #ff6fae;
-      animation: gentleFloat 4s ease-in-out infinite alternate;
-    }
-    
-    .video-btn {
-      background: linear-gradient(45deg, #ff6fae, #e75480);
-      color: white;
-      border: none;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(231, 84, 128, 0.3);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 auto;
-    }
-    
-    .video-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(231, 84, 128, 0.4);
-    }
-    
-    .video-btn:active {
-      transform: translateY(-1px);
-    }
-    
-    .video-section p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: #e75480;
-      font-style: italic;
-    }
-    
-    /* Video Modal */
-   .video-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #fde2e4, #fadadd);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Libre Baskerville', serif;
+    overflow: hidden;
 }
 
-.video-content {
-  width: 30%;           /* modal width */
-  max-width: 800px;     /* max width */
-  background: #000;     /* optional background */
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+/* 💖 FLOATING HEARTS – FIXED */
+.heart {
+    position: absolute;
+    bottom: -60px;
+    font-size: 42px;
+    opacity: 0.95;
+    pointer-events: none;
+
+    animation: floatUp 9s linear infinite;
+    animation-delay: var(--delay);
+
+    filter: drop-shadow(0 0 10px rgba(255, 105, 135, 0.6));
 }
 
-.video-player {
-  width: 100%;
-  height: auto;         /* maintain aspect ratio */
-  display: block;
-}
-
-    
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .container {
-        padding: 0.5rem;
-      }
-      
-      .panel {
-        padding: 1rem;
-      }
-      
-      header h1 {
-        font-size: 1.8rem;
-      }
-      
-      .music-player {
-        bottom: 10px;
-        right: 10px;
-        padding: 8px 12px;
-      }
-      
-      .music-info {
-        max-width: 120px;
-      }
-      
-      .song-title {
-        font-size: 0.8rem;
-      }
-      
-      .artist {
-        font-size: 0.7rem;
-      }
-      
-      .play-overlay {
-        padding: 1rem;
-      }
-      
-      .video-section {
-        padding: 1.5rem;
-        margin: 2rem 0;
-      }
-      
-      .video-btn {
-        padding: 12px 30px;
-        font-size: 1.1rem;
-      }
-      
-      .video-content {
-        width: 95%;
-      }
+@keyframes floatUp {
+    0% {
+        transform: translateX(0) translateY(0) scale(0.9);
+        opacity: 0;
     }
-  </style>
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(var(--x-move)) translateY(-120vh) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Card */
+.card {
+    background: rgba(255, 255, 255, 0.97);
+    padding: 45px;
+    border-radius: 28px;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.18);
+    max-width: 420px;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Pages */
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+
+.intro {
+    font-size: 17px;
+    color: #555;
+    margin-bottom: 18px;
+    font-style: italic;
+}
+
+h1 {
+    font-family: 'Allura', cursive;
+    color: #e63956;
+    font-size: 34px;
+    margin-bottom: 26px;
+    font-weight: normal;
+}
+
+button {
+    padding: 12px 32px;
+    font-size: 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+#yes {
+    background-color: #e63956;
+    color: white;
+}
+#no {
+    background-color: #f3f3f3;
+}
+
+.yes-text {
+    font-family: 'Allura', cursive;
+    font-size: 32px;
+    color: #e63956;
+}
+
+.warning {
+    font-family: 'Allura', cursive;
+    font-size: 34px;
+    color: #c9182b;
+}
+
+img {
+    width: 230px;
+    border-radius: 18px;
+    margin-top: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+}
+</style>
 </head>
+
 <body>
-  <!-- Auto-play permission overlay -->
-  <div id="playOverlay" class="play-overlay">
-    <h2>🎵 Our Love Story Soundtrack 🎵</h2>
-    <p>Click the button below to start the music and begin our romantic journey together</p>
-    <button class="play-btn" id="startMusicBtn">Start Our Song 💖</button>
-  </div>
 
-  <!-- Floating hearts -->
-  <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.textContent = '💖';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-      heart.style.animationDuration = 4 + Math.random() * 4 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 500);
-  </script>
+<!-- 🎶 MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="tere-naal.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Music Player -->
-  <div class="music-player">
-    <div class="music-info">
-      <div class="song-title">I love you </div>
-      
-      <div class="visualizer">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </div>
-    <div class="music-controls">
-      <button class="music-btn" id="playPauseBtn">⏸️</button>
-      <button class="music-btn" id="muteBtn">🔊</button>
-    </div>
-  </div>
+<div class="card">
 
-  <!-- Photo Gallery Modal -->
-  <div id="photoModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-    <div class="caption" id="modalCaption"></div>
-  </div>
+    <!-- PAGE 1 -->
+    <div id="page-question" class="page active">
+        <div class="intro">
+            I know you already are my Valentine forever…<br>
+            but still, I will ask you again 💕
+        </div>
 
- 
+        <h1>
+            Dear Divanshu Tandon,<br>
+            Will you be my Valentine<br>
+            now & forever? 💖
+        </h1>
 
-
-  <header>
-    <h1>Our Story So Far... 💞</h1>
-    <p>A cute little comic about us — celebrating one magical year 💫</p>
-  </header>
-
-  <div class="container">
-    <div class="panel" data-image="how-we-met.jpg" data-caption="The day we first met!">
-      <h2><span class="icon">👀</span> How We Met</h2>
-      <p>It all started with a glance... little talks, some chats (mainly SC 😂), shy smiles, school farewell, same college, freshers — fate was playing cupid from the start 💘.</p>
+        <button id="yes" onclick="showYes()">Yes 🥹💍</button>
+        <button id="no" onclick="showNo()">No 😒</button>
     </div>
 
-    <div class="panel" data-image="first-conversation.jpg" data-caption="Our first long conversation">
-      <h2><span class="icon">💬</span> First Long Conversation</h2>
-      <p>Awkward? Maybe but not much. Our very interesting, very long chat that brought us closer.🤭</p>
+    <!-- PAGE 2 -->
+    <div id="page-yes" class="page">
+        <div class="yes-text">
+            Good boyy 🫂💕<br>
+            You’re stuck with me forever ♾️🤭
+        </div>
+
+        <img src="memy.jpeg" alt="Us 💖">
     </div>
 
-    <div class="panel" data-image="first-date.jpg" data-caption="Our first date at Chai Vyanjan">
-      <h2><span class="icon">☕</span> First Date</h2>
-      <p>Our chai date at Chai Vyanjan 🤌 — simple, cute, and unforgettable. My heart was blushing the entire time 🥹. Aur tune kaha tha ab haath ni dhoyega😂.</p>
+    <!-- PAGE 3 -->
+    <div id="page-no" class="page">
+        <div class="warning">
+            Thappad padega 😤<br>
+            Gndaaaa!!
+        </div>
+
+        <button onclick="goBack()">Go back 🥺</button>
     </div>
 
-    <div class="panel" data-image="getting-closer.jpg" data-caption="Late night chats and memories">
-      <h2><span class="icon">🫂</span> Getting Closer</h2>
-      <p>Late-night chats, random photos, frequent updates, "missing you's", good morning, good evening texts. You became my favorite routine 💕.</p>
-    </div>
-
-    <div class="panel special-panel" data-image="i-proposed.jpg" data-caption="The day I proposed">
-      <h2><span class="icon">💍</span> I Proposed</h2>
-      <p>The moment that changed everything. itni sharam aari thi mujhe aur nervous bhi thi, pr tune toh krna ni tha toh himmat krke maine hi krdiya💪. boht pyaara moment tha wo🤌</p>
-    </div>
-
-    <div class="panel special-panel" data-image="i-love-you.jpg" data-caption="When we first said I Love You">
-      <h2><span class="icon">❤️</span> I Love You</h2>
-      <p>"I SAID I LOVE YOU FIRSTTTT". And that is why I LOVE YOU MOREEEE❤️❤️❤️❤️</p>
-    </div>
-
-    <div class="panel special-panel" data-image="you-proposed.jpg" data-caption="The night you proposed">
-      <h2><span class="icon">💍</span> You Proposed</h2>
-      <p>That night🤌✨. I had no idea kb tune ring li, kaise mere roommates se pkdi wo bhi mere saamne. That night of rangrez will always be in my heart❤️. Also it was our 1st proper hug that night🫂🥹.</p>
-    </div>
-
-    <div class="panel" data-image="fights.jpg" data-caption="We always make up stronger">
-      <h2><span class="icon">🤝</span> Fights & Forgiveness</h2>
-      <p>We argue, we cry, but somehow we always end up laughing again. Love > Ego. Always 🫶.<br>
-        law school mein jb hmari 1st major ladai hui🤧 boht boht sad lga tha but we made sure that it wont affect us🫂
-      </p>
-    </div>
-
-    <div class="panel" data-image="walks.jpg" data-caption="Our endless walks and talks">
-      <h2><span class="icon">🥰🤗</span> Infinite sits, talks, walks </h2>
-      <p>All the time we spend together here in the campus, while travelling or chatting being at homes, all these are the most special moments for me. Bina mile ab din incomplete lgta h.🤧</p>
-    </div>
-
-    <div class="panel" data-image="special-moments.jpg" data-caption="Our special moments">
-      <h2><span class="icon">❤️</span> Many small and special moments✨</h2>
-      <p>the day u wrote I LOVE.. on my knee🤭, when you asked me to be your girlfriend officially🥹, very slow i love you's on call, together thingys, etc etcccc. My heart gets so soo full🥹🤭🥰🫂🤌✨. Wo wala din toh boht special the jb boht tezz baarish hori thi aur hum bahr the, boht saari photos kheechi, chai date again, ludo kheli, itne ache mausam mein akele baithe alpha stage pr🤌 itna acha lgra tha itni shaanti milri thi🥹🥹.</p>
-    </div>
-
-    <div class="panel special-panel" data-image="first-kiss.jpg" data-caption="Our first kiss">
-      <h2><span class="icon">💋</span> Our First Kiss</h2>
-      <p>21st January, 2025 , one of the best days🤌 we had our first lip kiss. Itna blurry blurry hogya tha sb, kuch smjh ni aara tha kya hua. Very very special it was🥹. Fir uske baad 31st January ko jb fog fog tha boht aur light chli gyi thi, our first proper long kiss🤭🤭.</p>
-    </div>
-
-    <div class="panel special-panel" data-image="one-year.jpg" data-caption="Celebrating one year together">
-      <h2><span class="icon">🎂</span> One Year of Us</h2>
-      <p>365 days of laughter, tears, hugs, kisses, and countless memories. Kbhi ni socha tha aisa kuch hoga mere saath, itna acha partner milega, 1 year celebrate krenge, sb itna magical sa lgra🥹. Pta bhi ni chla kb 1 saal nikl gya, abhi toh mile the abhi toh baat start hui thi... pr ye bhi lgta abhi toh bs 1 saal hi hua h abhi puri life pdi h ikatthe🫂. As i always say, I am very very grateful to have you in my life as my partner🥹❤️🧿. Bs bhagwaan ji hme hmesha saath rkhe, hmesha khush rkhe🧿✨</p>
-    </div>
-
-    <div class="panel" data-image="future.jpg" data-caption="Our beautiful future together">
-      <h2><span class="icon">🏡</span> Our Future</h2>
-      <p>Building a cozy home with both our mummys and papas together🤌🧿, maybe a dog, weekend chai on the balcony, travelling the world, endless cuddles 🧸. To forever and beyond 🧿❤️.</p>
-    </div>
-
-    <div class="panel" data-image="more-to-come.jpg" data-caption="Many more memories to come">
-      <h2><span class="icon">✨</span> A lot more to add</h2>
-      <p>Abhi toh aur boht kuch rehta likhne ko. Ab har saal isme aur add krte rhenge, har special moment, har achievement, sb kuchh💗</p>
-    </div>
-
-    <!-- Video Modal -->
-<div id="videoModal" class="video-modal">
-  <span id="videoClose" class="close">&times;</span>
-  <div class="video-content">
-    <video id="videoPlayer" class="video-player" controls>
-      <source src="video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
 </div>
 
-<!-- Video Button Section -->
-<div class="video-section">
-  <p>🎥 A special video memory just for us... ✨</p>
-  <button class="video-btn" id="videoBtn">
-    <span>🎬</span> Watch Our Special Video
-  </button>
-</div>
+<script>
+function showYes() {
+    document.getElementById("page-question").classList.remove("active");
+    document.getElementById("page-no").classList.remove("active");
+    document.getElementById("page-yes").classList.add("active");
+    document.getElementById("bgMusic").play();
+}
 
+function showNo() {
+    document.getElementById("page-question").classList.remove("active");
+    document.getElementById("page-yes").classList.remove("active");
+    document.getElementById("page-no").classList.add("active");
+}
 
+function goBack() {
+    document.getElementById("page-no").classList.remove("active");
+    document.getElementById("page-question").classList.add("active");
+}
 
-  <footer>
-    Every chapter with you is my favorite. Thankyou for being you and being mine. 💌<br />
-     <b>I Love You❤️</b><br> -Bhavya 💗
-  </footer>
+/* 💖 HEART GENERATOR – NATURAL FLOAT */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
 
-  <!-- Audio Element -->
-  <audio id="backgroundMusic" loop>
-    <source src="Tere Naal Tulsi Kumar 128 Kbps.mp3" type="audio/mpeg">
-  </audio>
+    const hearts = ["🤍", "💖", "💗"];
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
 
-  <script>
-    // DOM elements
-    const audio = document.getElementById('backgroundMusic');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const muteBtn = document.getElementById('muteBtn');
-    const startMusicBtn = document.getElementById('startMusicBtn');
-    const playOverlay = document.getElementById('playOverlay');
-  const videoBtn = document.getElementById('videoBtn');
-const videoModal = document.getElementById('videoModal');
-const videoPlayer = document.getElementById('videoPlayer');
-const videoClose = document.getElementById('videoClose');
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 14 + 36 + "px";
 
-    
-    // Start music when user clicks the overlay button
-    startMusicBtn.addEventListener('click', function() {
-      // Hide the overlay
-      playOverlay.style.display = 'none';
-      
-      // Start playing music
-      audio.play().then(() => {
-        console.log("Music started successfully");
-        playPauseBtn.textContent = "⏸️";
-      }).catch(error => {
-        console.log("Auto-play failed:", error);
-        playPauseBtn.textContent = "▶️";
-      });
-    });
-    
-    // Play/Pause button
-    playPauseBtn.addEventListener('click', function() {
-      if (audio.paused) {
-        audio.play();
-        playPauseBtn.textContent = "⏸️";
-      } else {
-        audio.pause();
-        playPauseBtn.textContent = "▶️";
-      }
-    });
-    
-    // Mute/Unmute button
-    muteBtn.addEventListener('click', function() {
-      if (audio.muted) {
-        audio.muted = false;
-        muteBtn.textContent = "🔊";
-      } else {
-        audio.muted = true;
-        muteBtn.textContent = "🔇";
-      }
-    });
-    
-    // Video button functionality
- videoBtn.addEventListener('click', function() {
-  videoModal.style.display = 'flex';
-  videoPlayer.play();
-});
+    const xMove = Math.random() * 140 - 70;
+    heart.style.setProperty("--x-move", xMove + "px");
 
-videoClose.addEventListener('click', function() {
-  videoModal.style.display = 'none';
-  videoPlayer.pause();
-  videoPlayer.currentTime = 0; // reset video
-});
+    const delay = Math.random() * 3;
+    heart.style.setProperty("--delay", delay + "s");
 
-videoModal.addEventListener('click', function(e) {
-  if (e.target === videoModal) {
-    videoModal.style.display = 'none';
-    videoPlayer.pause();
-    videoPlayer.currentTime = 0;
-  }
-});
+    document.body.appendChild(heart);
 
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    videoModal.style.display = 'none';
-    videoPlayer.pause();
-    videoPlayer.currentTime = 0;
-  }
-});
+    setTimeout(() => heart.remove(), 10000);
+}, 180);
+</script>
 
-    
-    // Photo gallery functionality
-    const modal = document.getElementById('photoModal');
-    const modalImg = document.getElementById('modalImage');
-    const captionText = document.getElementById('modalCaption');
-    const closeBtn = document.querySelector('.close');
-    
-    // Add click event to all panels
-    document.querySelectorAll('.panel').forEach(panel => {
-      panel.addEventListener('click', function() {
-        const imageSrc = this.getAttribute('data-image');
-        const caption = this.getAttribute('data-caption');
-        
-        // In a real implementation, you would use actual image paths
-        // For this demo, we'll use placeholder images
-        modalImg.src = `https://picsum.photos/800/600?random=${Math.floor(Math.random() * 100)}`;
-        captionText.innerHTML = caption;
-        modal.style.display = 'flex';
-      });
-    });
-    
-    // Close modal when clicking X
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-    
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        modal.style.display = 'none';
-      }
-    });
-  </script>
 </body>
 </html>
